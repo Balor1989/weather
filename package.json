@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Balor1989/weather#readme",
   "dependencies": {
+    "axios": "^0.27.2",
     "chalk": "^5.0.1",
     "dedent": "^0.7.0"
   }
