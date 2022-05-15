@@ -1,4 +1,5 @@
 import axios from "axios";
+import { printError } from "./log.service.js";
 import { getKeyValue, tokenDictionary } from "./storage.service.js";
 
 const getLatAndLon = async (city) => {
@@ -22,6 +23,10 @@ const getLatAndLon = async (city) => {
     (acc, { lat, lon }) => ({ ...acc, ["lat"]: lat, ["lon"]: lon }),
     {}
   );
+  if (!coord.lat || !coord.lon) {
+    printError("Wrong city");
+    return;
+  }
 
   getCity(coord, token);
   return data;

@@ -17,6 +17,13 @@ async function saveToken(token) {
   }
 }
 
+const getForecast = async () => {
+  try {
+    const weather = await getLatAndLon("Новая Кахов");
+    console.log(weather);
+  } catch (error) {}
+};
+
 const initCLI = () => {
   const args = getArgs(process.argv);
   if (args.h) {
@@ -27,7 +34,7 @@ const initCLI = () => {
   if (args.t) {
     return saveToken(args.t);
   }
-  getLatAndLon("новая каховка");
+  getForecast();
 };
 
 initCLI();
