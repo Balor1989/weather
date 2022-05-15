@@ -27,7 +27,7 @@ const initCLI = () => {
   if (args.t) {
     return saveToken(args.t);
   }
-  getLatAndLon("киев");
+  getLatAndLon("новая каховка");
 };
 
 initCLI();

@@ -18,6 +18,28 @@ const getLatAndLon = async (city) => {
     }
   );
 
+  const coord = data.reduce(
+    (acc, { lat, lon }) => ({ ...acc, ["lat"]: lat, ["lon"]: lon }),
+    {}
+  );
+
+  getCity(coord, token);
+  return data;
+};
+
+const getCity = async (coord, token) => {
+  const { data } = await axios.get(
+    "https://api.openweathermap.org/data/2.5/weather",
+    {
+      params: {
+        lat: coord.lat,
+        lon: coord.lon,
+        appid: token,
+        units: "metric",
+        lang: "ru",
+      },
+    }
+  );
   console.log(data);
 };
 
