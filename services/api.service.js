@@ -2,6 +2,29 @@ import axios from "axios";
 import { printError } from "./log.service.js";
 import { getKeyValue, tokenDictionary } from "./storage.service.js";
 
+const getIcon = (icon) => {
+  switch (icon.slice(0, -1)) {
+    case "01":
+      return "☀️";
+    case "02":
+      return "🌤️";
+    case "03":
+      return "☁️";
+    case "04":
+      return "☁️";
+    case "09":
+      return "🌧️";
+    case "10":
+      return "🌦️";
+    case "11":
+      return "🌩️";
+    case "13":
+      return "❄️";
+    case "50":
+      return "🌫️";
+  }
+};
+
 const getLatAndLon = async (city) => {
   const token = await getKeyValue(tokenDictionary.token);
   if (!token) {
@@ -28,8 +51,8 @@ const getLatAndLon = async (city) => {
     return;
   }
 
-  getCity(coord, token);
-  return data;
+  const findedCity = getCity(coord, token);
+  return findedCity;
 };
 
 const getCity = async (coord, token) => {
@@ -45,7 +68,7 @@ const getCity = async (coord, token) => {
       },
     }
   );
-  console.log(data);
+  return data;
 };
 
-export { getLatAndLon };
+export { getLatAndLon, getIcon };
